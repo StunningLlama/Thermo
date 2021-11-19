@@ -1,0 +1,138 @@
+%Gen math
+\newcommand{\problem}[1]{\subsection*{#1}}
+\newcommand{\pt}[1]{\paragraph{(#1)}}
+\newcommand{\spc}{\text{ }}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\HA}{\mathbb{H}}
+\newcommand{\SA}{\mathbb{S}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bmt}{\begin{bmatrix}}
+\newcommand{\bmtl}[1]{\begin{array}{#1}}
+\newcommand{\emt}{\end{bmatrix}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\img}{\operatorname{im}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\spanl}{\operatorname{span}}
+\newcommand{\twomat}[4]{\bmt #1 & #2 \\ #3 & #4 \emt}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\Det}{\operatorname{det}}
+
+\newcommand{\mathdiagram}[3]{
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=#2]{mathdiagram/#1}
+    \caption{#3}
+\end{figure}
+}
+\newcommand{\stack}[2]{\stackrel{\text{#1}}{#2}}
+%Phys
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\vecd}[2]{#1 \vh{i} + #2 \vh{j}}
+\newcommand{\vecdm}[2]{#1 \vh{i} - #2 \vh{j}}
+\newcommand{\vect}[3]{#1 \vh{i} + #2 \vh{j} + #3 \vh{k}}
+\newcommand{\va}[1]{\vec{\mathbf{#1}}}
+\newcommand{\vh}[1]{\hat{\mathbf{#1}}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\px}[1]{\frac{\partial #1}{\partial x}}
+\newcommand{\py}[1]{\frac{\partial #1}{\partial y}}
+\newcommand{\pz}[1]{\frac{\partial #1}{\partial z}}
+\newcommand{\partialt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\D}[1]{\operatorname{d #1}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\T}[1]{\text{#1}}
+\newcommand{\VE}{\vec{\mathbf{E}}}
+\newcommand{\VB}{\vec{\mathbf{B}}}
+\newcommand{\VA}{\vec{\mathbf{A}}}
+\newcommand{\pd}[2]{\left(\frac{\partial #1}{\partial #2}\right)}
+
+\newcommand{\physdiagram}[2]{
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=#2]{physdiagram/#1}
+    \caption{Diagram}
+\end{figure}
+}
+
+\newcommand{\physdiagramb}[3]{
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=#2]{physdiagram/#1}
+    \caption{#3}
+\end{figure}
+}
+
+
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\Hhat}{\hat{H}}
+\newcommand{\That}{\hat{T}}
+\newcommand{\Ohat}{\hat{O}}
+\newcommand{\Nhat}{\hat{N}}
+\newcommand{\xhattilde}{\hat{\tilde{x}}}
+\newcommand{\phattilde}{\hat{\tilde{p}}}
+\newcommand{\psitilde}{\tilde{\psi}}
+\newcommand{\Psitilde}{\tilde{\Psi}}
+\newcommand{\Thattilde}{\hat{\tilde{T}}}
+\newcommand{\fancyL}{\mathcal{L}}
+\newcommand{\fancyO}{\mathcal{O}}
+\newcommand{\ahat}{\hat{a}}
+%Multivar
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\vectwo}[2]{
+\big(\begin{smallmatrix}
+  #1\\
+  #2
+\end{smallmatrix}\big)
+}
+
+\newcommand{\vecthree}[3]{
+\left(\begin{smallmatrix}
+  #1\\
+  #2\\
+  #3
+\end{smallmatrix}\right)
+}
+
+
+\newcommand{\vecfour}[4]{
+\left(\begin{smallmatrix}
+  #1\\
+  #2\\
+  #3\\
+  #4
+\end{smallmatrix}\right)
+}
+
+\newcommand{\vecsix}[6]{
+\left(\begin{smallmatrix}
+  #1\\
+  #2\\
+  #3\\
+  #4\\
+  #5\\
+  #6
+\end{smallmatrix}\right)
+}
+
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\var}{\operatorname{var}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\eql}{\stackrel{L}{=}}
+\newcommand{\defeq}{\stackrel{def}{=}}
+\newcommand{\curl}{\nabla \times}
+\newcommand{\divg}{\nabla \cdot}
+\newcommand{\grad}{\nabla}
