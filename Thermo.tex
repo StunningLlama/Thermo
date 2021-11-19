@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{homework}
+\usepackage{enumitem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+
+\usepackage[left=1.0in, right=1.0in, top=1.25in, bottom=1.5in]{geometry}
+\title{Thermodynamics}
+\author{Brandon Li}
+\begin{document}
+\maketitle
+\section{Introduction}
+Preface: These notes give an overview of thermodynamics from the perspective of manifolds and differential forms. These mathematical objects are very useful because they allow multivariable calculus to be generalized to $n$-dimensions and I believe it is natural and very helpful to frame thermodynamic concepts in terms of differential forms. There are many good resources that contain information on these topics, if one wishes to learn about it (look in the reference section).
+\subsection{State variables and manifolds}
+In all thermodynamic systems, we have a set of thermodynamic variables that completely describe all the aspects of the system we care about. For example, if we have a container of gas, then we care only about its pressure $P$, volume $V$, temperature $T$, and a few other things. Some of the variables we will deal with are listed below:
+\begin{gather}
+    P, V, T, S, U, H, etc.
+\end{gather}
+In any system, these variables will be related to each other by a set of equations which depend the nature of that particular system.
+\begin{example}
+Ideal gas
+\end{example}
+In an ideal gas, we have
+\begin{gather}
+    PV=NkT\\
+    U = \frac{f}{2}N k T\\
+    H = U+PV
+\end{gather}
+Considering only equation (2) for a moment, let us treat $N$ as a fixed constant for now. Therefore, the parameters $P, V$ and $T$ are free to vary. Since we have $3$ variables and one equation relating them, the set of allowed states forms a $2$-dimensional surface embedded in $3$D space (think of each axis as representing $P$, $V$, or $T$ respectively). In other words, the set of possible states of our system forms a $2$-manifold embedded in $\R^3$ (One could of course rigorously justify this using the implicit function theorem).
+\par
+What happens when we take equations (3) and (4) into account? Well, each equation adds a new variable ($U$ and $H$ respectively) into consideration and adds one equation relating the new variable to the old ones. This means the number of constraints grows in correspondence to the number of variables, so the dimension of the manifold doesn't change, but the space it is embedded in becomes larger. Once we add $U$ and $H$, we will have a $2$-manifold in $\R^5$. In general, every time we wish to add a new variable, it will be a function of the old variables therefore the dimension of the manifold doesn't change. We can summarize this observation into the statement:
+\begin{proposition}
+In an ideal gas where $N$ is held fixed, the set of all possible thermodynamic states (state manifold) forms a 2-manifold $M$ that is naturally embedded in a higher dimensional space.
+\end{proposition}
+And it is the case that the state space of all thermodynamic systems is a manifold. A reasonable question one may ask is why we should go through the trouble of formulating thermodynamics in terms of manifolds. The reason is that once we define work and heat in terms of differential forms, it becomes extremely natural to integrate these quantities over a path on the manifold, and this corresponds to manipulating the system somehow in real life like compressing it, or adding a heat bath, or anything.
+In a quasi-static process, the state of the system is well defined at each point in time, therefore
+\begin{definition}
+Every quasi-static thermodynamic process corresponds to a parameterized path $\gamma: [t_i, t_f] \to M$ from the time domain into the state manifold. Furthermore, $\gamma$ must be continuous.
+\end{definition}
+
+\subsection{Thermodynamic surfaces and phases}
+The state manifold of a system can be visualized by projecting it onto a $3$ dimensional subspace of the high dimensional space it is embedded in. This basically corresponds to taking a section of a $2$D surface in the high dimensional space and ``forgetting about some of the coordinates". An example is shown in Figure 1.
+\physdiagramb{thermo.png}{0.5}{In this image, the state manifold is projected onto the coordinates $P, V, T$. Source: Hyperphysics}
+And the advantage of this representation is that it allows us to get an intuitive understanding of what state space looks like. We also notice that the manifold is divided into smooth regions separated by sharp borders. Each region corresponds to a different thermodynamic phase, allowing for an initial definition of phase:
+\begin{definition}
+A thermodynamic phase is a subset of the thermodynamic manifold such that the manifold is smooth on this region.
+\end{definition}
+\subsection{Work and heat}
+Work and heat are two ways energy can be transferred, and work may be thought of as force applied over some distance. In the infinitesimal limit, the distance becomes infinitely small. In a container of gas, we may define an infinitesimal quantity of work $dW = -P\, dV$ which is actually a differential $1$-form and this means we can calculate the work done by integrating it over a path on the state manifold.
+\begin{definition}
+If we have a path $\gamma: [t_i, t_f] \to M$, the total work $W_{tot}$ done on the system from $t_i$ to $t_f$ is equal to $\int_{\gamma}{dW}$. In the case of a gas, this is equal to $\int_{\gamma}{-P\, dV}$.
+\end{definition}Note that the notation $dW$ makes it seem like is the derivative of a $0$-form $W$, however this is not true since work is not a state variable.\par
+The other form of energy transfer is heat. We may define the heat transfer:
+\begin{definition}
+If we have a path $\gamma$, the total heat $Q_{tot}$ into the system from $t_i$ to $t_f$ is equal to $\int_{\gamma}{dQ}$.
+\end{definition}
+A consequence of the second law of thermodynamics is that,
+\begin{axiom}
+There exists a state variable $S$, called entropy, which has the property that in the quasi-static limit, $dQ = T\, dS$ meaning $Q_{tot} = \int_{\gamma}{T\, dS}$.
+\end{axiom}
+
+\subsection{First law of thermodynamics}
+The first law of thermodynamics essentially posits the existence of an internal energy $U$.
+\begin{axiom}
+First law: There exists a state variable $U$ such that its exterior derivative, $dU$ is equal to $dW + dQ$.
+\end{axiom}
+Note that $dU$, $dW$, and $dQ$ are all differential 1-forms. By integrating over a path $\gamma$, we arrive at an equivalent formulation of the first law.
+\begin{gather}
+    \Delta U = \underbrace{U(t_f) - U(t_i) = \int_{\gamma}{dU}}_{\text{Follows from generalized stoke's theorem}} = \int_{\gamma}{dW + dQ} = \int_{\gamma}{dW} + \int_{\gamma}{dQ} = W_{tot} + Q_{tot}
+\end{gather}
+Which should be a more familiar form of the first law.
+\begin{theorem}
+The first law is equivalent to the statement $\Delta U = W_{tot} + Q_{tot}$ where $\Delta U$ is the change in the internal energy.
+\end{theorem}
+\subsection{Partial derivatives}
+Why is it that when we take the partial derivative of some quantity $X$ w.r.t. $Y$, we must hold another variable $Z$ constant? Intuitively, if we want to express $X$ locally as a function of some number of other variables, we must write $X$ in terms of exactly two other variables because we think of a surface as having two degrees of freedom/dimensions. In most cases, we are free to choose what $Z$ and $Y$ are and as long as there are no singularities, we can solve for $X$ and write $X = X(Y, Z)$. Once this is done, we may regard $X$ as a function of $Y$ and $Z$ and then it makes sense to take a partial derivative w.r.t. one variable holding the other constant.\par
+If we instead took something like $H = U + PV$, then yes, we wrote $H$ in terms of three variables but the problem is that this equation does not satisfy the other constraints ($PV = NkT$, etc.)
+\par
+If instead our system has three free variables (for example, we can change $P$, $V$, and $N$) independently, then the set of states will be a $3$D manifold and we must parameterize $X = X(Y, Z, W)$ in terms of three variables, therefore we must hold two variables constant, for example $\pd{X}{Y}_{Z,W}$.
+\subsection{Heat capacities}
+On the manifold, we may define two quantities, known as heat capacities, that measure how quickly temperature changes as heat is added.
+\begin{definition}
+The constant volume heat capacity, $C_v$ is defined to be the quantity $\pd{U}{T}_{V}$. The constant pressure heat capacity, $C_p$ is defined as $\pd{H}{T}_{P}$ where $H = U+PV$.
+\end{definition} and note that $C_p = \pd{H}{T}_{P} = \pd{(U + PV)}{T}_{P}= \pd{U}{T}_P + P \pd{V}{T}_P$. Let us apply these definitions in an example. Suppose the volume of the system is held fixed and we are adding heat to it. We may write the form $dU$ in terms of the forms $dT$ and $dV$:
+\begin{gather}
+    dU = \pd{U}{T}_{V}\, dT + \pd{U}{V}_{T}\, dV
+\end{gather} and since $V$ is held constant, then $dV = 0 \implies dU = \pd{U}{T}_{V}\, dT = C_v\, dT$. Now, $dU = dW + dQ$ and since there is no $PV$ work, $dW = 0 \implies dU = dQ$. Finally, this means
+\begin{equation}
+    dQ = C_v\, dT \implies \int_{\gamma}{C_v \, dT} = Q_{tot}
+\end{equation}
+This shows that at constant volume, $C_v$ is the ratio of heat added to the change in temperature.\par
+Now, let us hold $P$ constant. We see 
+\begin{gather}
+    dH = \pd{H}{T}_{P}\, dT + \pd{H}{P}_{T}\, dP = 
+\end{gather}
+and $dH = \pd{H}{T}_{P}\, dT = C_p\, dT$ since $dP = 0$. We may also calculate the quantity $dH$ in a different way: $dH = dU + d(PV) = dU + P dV + V dP = dU + P dV = dU - dW = dQ$ therefore 
+\begin{gather}
+    dQ = C_p\, dT \implies \int_{\gamma}{C_P\, dT} = Q_{tot}
+\end{gather}
+At constant pressure, $C_p$ is the ratio of heat added to the change in temperature.
+\subsection{Maxwell relations}
+Taking the first law and applying the exterior derivative to both sides, we see
+\begin{gather}
+    0 = d(dU) = -d(P\, dV) + d(T\, dS) = -dP \wedge dV + dT \wedge dS
+\end{gather}
+Because of the implicit function theorem, we may locally write $P = P(S, V)$ and $T = T(S, V)$. Then, $dP = \pd{P}{S}_{V}\, dS + \pd{P}{V}_{S}\, dV$ and $dT = \pd{T}{S}_{V}\, dS + \pd{T}{V}_{S}\, dV$. Substituting these into the expression $-dP \wedge dV + dT \wedge dS$, we find
+\begin{gather}
+    -\left[\pd{P}{S}_{V}\, dS + \pd{P}{V}_{S}\, dV\right]\wedge dV + \left[\pd{T}{S}_{V}\, dS + \pd{T}{V}_{S}\, dV\right] \wedge dS = 0\\
+    -\pd{P}{S}_{V}\, dS\wedge dV - \pd{P}{V}_{S}\, dV\wedge dV + \pd{T}{S}_{V}\, dS\wedge dS + \pd{T}{V}_{S}\, dV \wedge dS = 0
+\end{gather}
+note that $dV \wedge dV = dS \wedge dS = 0$ and $dV \wedge dS = - dS \wedge dV$ since the wedge product is anti-symmetric. Then,
+\begin{gather}
+    -\left[\pd{P}{S}_{V} + \pd{T}{V}_{S}\right] dS \wedge dV = 0\\
+    \implies -\pd{P}{S}_{V} = \pd{T}{V}_{S}
+\end{gather}
+This is just one of Maxwell's relations, and the others may be derived in a similar way. We see that working in terms of manifolds allows us to derive these important relations in a simple and elegant manner.
+
+\section{Statistical definition of entropy}
+
+
+\pagebreak
+\section{References}
+\begin{enumerate}[label={[\arabic*]}]
+  \item The mathematical structure of thermodynamics, http://www.sci.sdsu.edu/~salamon /MathThermoStates.pdf
+  \item Beginners guide to differential forms in thermodynamics,
+https://www.fuw.edu.pl/~pzdybel/DiffF.pdf
+\end{enumerate} Manifolds and differential forms:
+\begin{enumerate}[label={[\arabic*]}]
+\setcounter{enumi}{2}
+\item Hubbard, John H, and Barbara B. Hubbard (2002). Vector Calculus, Linear Algebra, and Differential Forms: A Unified Approach. https://download.tuxfamily.org/openmathdep/ calculus\_advanced/Vector\_Calculus-Hubbards.pdf
+\item Sjamaar, R. Manifolds and Differential Forms. http://pi.math.cornell.edu/~sjamaar/ manifolds/manifold.pdf
+\item Spivak, M. (1998). Calculus on manifolds: a modern approach to classical theorems of advanced calculus. http://www.strangebeautiful.com/other-texts/spivak-calc-manifolds.pdf
+\end{enumerate}
+\end{document}
